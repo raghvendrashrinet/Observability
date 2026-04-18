@@ -1,4 +1,4 @@
-# AKS Cluster Setup with Prometheus and Grafana
+# AKS Cluster Setup with Prometheus and Grafana 
 
 This guide provides a complete CLI command sequence to create an AKS cluster and deploy Prometheus and Grafana for monitoring.
 
@@ -21,10 +21,10 @@ az aks create \
   --enable-addons monitoring \
   --generate-ssh-keys \
   --node-vm-size Standard_B2s
-```
+
 # Get cluster credentials
 az aks get-credentials --resource-group $RESOURCE_GROUP --name $AKS_NAME
-
+```
 
 ## 2. Install Prometheus and Grafana
 
