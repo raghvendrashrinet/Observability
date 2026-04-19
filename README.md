@@ -82,3 +82,95 @@ kubectl port-forward -n monitoring svc/prometheus-grafana 8080:80
      ▼
   Grafana Service
 
+
+1️⃣ Production AKS Observability Architecture
+
+                         Internet
+                           │
+                           ▼
+                 Azure Application Gateway
+                           │
+                           ▼
+                    Ingress Controller
+               (NGINX / AGIC / Istio Gateway)
+                           │
+        ┌──────────────────┼───────────────────┐
+        ▼                  ▼                   ▼
+   Grafana UI          Application         DevOps Tools
+   (Dashboards)          APIs
+        │
+        ▼
+ ┌──--─────────────────────────────────────────-┐
+ │           Observability Stack                │
+ │                                              │
+ │  Metrics        Logs            Tracing      │
+ │                                              │
+ │ Prometheus      Loki            Tempo        │
+ │                                              │
+ │ Node Exporter   FluentBit       OpenTelemetry|
+ │ kube-state      Container logs  Traces       |
+ │ metrics         Pod logs        Service traces
+ │                                              │
+ └────--─────────────────────────────────────-──┘
+        │
+        ▼
+   Kubernetes Cluster
+   (Pods / Services / Nodes)
+
+
+2️⃣ Components Used in Enterprise
+Metrics  : Collected by Prometheus
+Sources:
+  Kubernetes nodes
+  Pods
+  containers
+  applications
+
+Exporters used:
+  Node Exporter → node metrics
+  kube-state-metrics → cluster state
+  Prometheus Operator → manages Prometheus
+
+In the kube-prometheus-stack setup:
+ Host/Node metrics: Node Exporter – deployed as a DaemonSet, collects CPU, memory, disk, and network usage from each AKS node. 
+ Kubernetes infrastructure (Pods, Nodes, Deployments, etc.):  kube-state-metrics – queries the Kubernetes API and exposes metrics about object states (e.g., pod status, resource requests). 
+ Applications hosted on the cluster: Custom application exporters (e.g., Prometheus client libraries in your app) or sidecar exporters. Prometheus scrapes metrics from the /metrics endpoint exposed by your application if a ServiceMonitor is configured. 
+
+
+Logs: Collected using:
+ Fluent Bit
+ Grafana Loki
+
+Flow:
+ Pods
+  │
+  ▼
+FluentBit
+  │
+  ▼
+Loki
+  │
+  ▼
+Grafana Logs
+
+Distributed Tracing
+
+Used for microservices debugging.
+
+Common tool:
+
+Grafana Tempo
+
+Instrumentation via:
+
+OpenTelemetry
+ Trace flow:
+  Service A
+    │
+    ▼
+  Service B
+    │
+    ▼
+  Service C
+
+Tempo shows latency across services.
