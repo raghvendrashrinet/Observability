@@ -83,7 +83,7 @@ kubectl port-forward -n monitoring svc/alertmanager-operated  9093:9093
 # To check metric fetching on the node exporter/kube-state-matrics
 - curl <node-exporter-svc-ip>:9100/metrics
 - curl <prometheus-kube-state-metrics-svc-ip>:8080/metrics
-Similarly kube-state-
+
 
 # For production deployment
    Internet
