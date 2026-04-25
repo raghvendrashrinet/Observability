@@ -70,8 +70,15 @@ kubectl get secret -n monitoring prometheus-grafana -o jsonpath="{.data.admin-pa
 Powershell
 kubectl get secret -n monitoring prometheus-grafana -o jsonpath="{.data.admin-password}" |
 % { [System.Text.Encoding]::UTF8.GetString([System.Convert]::FromBase64String($_)) }
-# Port-forward to access Grafana Dashboard , To access from your system
+
+# Prometheus UI, Port-forward to access Prometheus Dashboard
+kubectl port-forward -n monitoring svc/prometheus-opertated  9090:9090
+
+# Garafana UI, Port-forward to access Grafana Dashboard , To access from your system
 kubectl port-forward -n monitoring svc/prometheus-grafana 8080:80
+
+# Alert Manager UI
+kubectl port-forward -n monitoring svc/alertmanager-operated  9093:9093
 
 # For production deployment
    Internet
