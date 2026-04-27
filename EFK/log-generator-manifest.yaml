@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: log-generator
+  namespace: default
+  labels:
+    app: log-generator
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: log-generator
+  template:
+    metadata:
+      labels:
+        app: log-generator
+    spec:
+      containers:
+      - name: logger
+        image: chentex/random-logger:latest
+        env:
+        - name: LOG_TYPE
+          value: "json" # This makes it easy for Fluent Bit to parse
+        - name: DELAY
+          value: "1000" # One log every 1000ms
