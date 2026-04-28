@@ -1,0 +1,1 @@
+Dynatrace is an AI-powered observability and application performance monitoring (APM) platform that helps enterprises monitor, analyze, and secure their applications, infrastructure, and digital experiences across multi-cloud and hybrid environments. It is widely used for real-time insights, automated problem remediation, and advanced analytics.
