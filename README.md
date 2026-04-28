@@ -1,6 +1,20 @@
 # AKS Cluster Setup with Prometheus and Grafana 
-
 This guide provides a complete CLI command sequence to create an AKS cluster and deploy Prometheus and Grafana for monitoring.
+## REpo Navigation
+```
+Observability/
+├── 📊 Prometheus.md                      # Overview and components of Prometheus
+├── 🌐 OpenTelemetry/                     # OpenTelemetry instrumentation and configs
+├── 🕵️ Tracing-Jaeger/                    # Jaeger tracing implementation & folder structure
+├── 📝 EFK/                               # Logging stack (Elasticsearch, Fluentd, Kibana)
+│   └── log-generator-deployment.yaml     # Manifest for generating sample logs
+├── 🛠️ Projt1-Instrumentation-Custom-Metric # Custom metrics instrumentation project
+├── ☁️ Obervability/                      # Azure-specific observability
+│   └── AKS-Cluseter-Prometheus-through-cli # AKS setup and Prometheus CLI guides
+├── 🚀 Other-FullStack-ObservabiltyServices # Datadog, Dynatrace, and other integrations
+└── 📜 README.md                          # Main documentation and setup guides
+```
+
 
 ## 1. Create AKS Cluster
 
