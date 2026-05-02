@@ -1,6 +1,6 @@
 # AKS Cluster Setup with Prometheus and Grafana 
 This guide provides a complete CLI command sequence to create an AKS cluster and deploy Prometheus and Grafana for monitoring.
-## REpo Navigation
+## Repo Navigation
 ```
 Observability/
 ├── 📊 Prometheus.md                      # Overview and components of Prometheus
