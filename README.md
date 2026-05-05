@@ -15,6 +15,29 @@ Observability/
 └── 📜 README.md                          # Main documentation and setup guides
 ```
 
+## Telemetry
+```mermaid
+graph TD
+    subgraph "The Telemetry Triad"
+    A[Telemetry] --> B(Metrics)
+    A --> C(Logs)
+    A --> D(Traces)
+    end
+
+    B --> B1["<b>The 'What'</b><br/>Quantitative Data"]
+    B1 --- B2["<i>Example: CPU is at 85%</i>"]
+
+    C --> C1["<b>The 'Why'</b><br/>Immutable Events"]
+    C1 --- C2["<i>Example: User Login Failed</i>"]
+
+    D --> D1["<b>The 'Where'</b><br/>Request Journey"]
+    D1 --- D2["<i>Example: Path from Web -> API -> DB</i>"]
+
+    style A fill:#f9f,stroke:#333,stroke-width:2px
+    style B fill:#bbf,stroke:#333
+    style C fill:#bfb,stroke:#333
+    style D fill:#fbb,stroke:#333
+```
 
 ## 1. Create AKS Cluster
 
