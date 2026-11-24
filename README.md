@@ -199,10 +199,12 @@ Heavyweight full-text indexing pipeline. Fast searching across billions of words
          │
          ▼ (Lumberjack Protocol)
   [   Logstash   ]        <─ Heavy processing engine. Aggregates, 
-         │                   parses JSON, mutates data, structures fields.
+         │                   parses JSON, mutates data, structures fields.(heavy-duty ETL)
          ▼ (Bulk API HTTP)
   [ Elasticsearch]        <─ Creates an Inverted Index of *every single word* 
-         │                   in the log. Requires high RAM/CPU.
+         │                   in the log. stores the full log document—plus heavy indexes
+Requires high RAM/CPU.
+
          ▼ (Block Storage)
   [ SSDs / NVMe  ]        <─ High-speed storage required for indexes
          │
